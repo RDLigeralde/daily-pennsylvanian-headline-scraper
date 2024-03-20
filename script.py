@@ -26,8 +26,15 @@ def scrape_data_point():
 
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
-        target_element = soup.find("a", class_="frontpage-link")
-        data_point = "" if target_element is None else target_element.text
+
+        #Scrape the headline of the sponsered story, if any
+        target_element = soup.find("div", class_="story sidebar-story sponsored")
+        if target_element is not None:
+            a_tag = target_element.find("a")
+            data_point = a_tag.text if a_tag is not None else ""
+        else:
+            data_point = ""
+            
         loguru.logger.info(f"Data point: {data_point}")
         return data_point
 
