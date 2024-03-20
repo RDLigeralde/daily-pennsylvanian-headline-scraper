@@ -135,3 +135,7 @@ But it is important to use it responsibly and ethically. Here are some guideline
 9. Document your scraping process thoroughly for replicability, transparency and accountability.
 
 10. Continuously re-evaluate your scraping program against applicable laws and ethical principles.
+
+## Personal Modifications
+
+My goal was to get the headlines of sponsored stories in the sidebar. To that end, I told the target element to find divs with the class "story sidebar-story sponsered", which gave me the div wrapping this headline assuming it exists (there is a sponsored story). I then found the element with tag "a" within this div to get the headline and link, and from there extracted the data as the text from this tag. If either of these steps failed to find a suitable tag, I returned "" as a headline to represent no sponsored story being present.
